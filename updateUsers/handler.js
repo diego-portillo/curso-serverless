@@ -7,7 +7,6 @@ if(process.env.IS_OFFLINE){
 }
 const dynamodb = new AWS.DynamoDB.DocumentClient(dynamoDBClientParams)
 
-
 const updateUsers = async (event, context) => {
     let userId = event.pathParameters.id
     const body = JSON.parse(event.body)
