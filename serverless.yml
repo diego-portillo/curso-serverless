@@ -11,24 +11,36 @@ provider:
           Resource: arn:aws:dynamodb:us-east-1:211125335109:table/usersTable
 functions:
   get-users:
+    package:
+      patterns:
+        - "getUsers/handler.js"
     handler: getUsers/handler.getUsers
     events:
       - http:
           path: users/{id}
           method: GET
   create-users:
+    package:
+      patterns:
+        - "createUsers/handler.js"
     handler: createUsers/handler.createUsers
     events:
       - http:
           path: users
           method: POST
   update-users:
+    package:
+      patterns:
+        - "updateUsers/handler.js"
     handler: updateUsers/handler.updateUsers
     events:
       - http:
           path: users/{id}
           method: PATCH
   delete-users:
+    package:
+      patterns:
+        - "deleteUsers/handler.py"
     handler: deleteUsers/handler.deleteUsers
     runtime: python3.8
     events:
@@ -52,8 +64,7 @@ custom:
 package:
   individually: true
   patterns:
-    - "!.dynamodb"
-    - "!.node_modules"
+    - "!*/**"
 
 resources:
   Resources:
